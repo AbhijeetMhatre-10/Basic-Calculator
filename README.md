@@ -1,18 +1,48 @@
-# Basic-Calculator-
+# 🥮 Basic Calculator (Trial Version)
 
-How to Use:
+This is a simple, clean, and fully functional web-based calculator built using **HTML**, **CSS**, and **JavaScript**. It supports basic arithmetic operations, as well as percentage calculation, clearing input, and deleting characters.
 
-1. Enter Numbers and Operators: Click on the buttons or use your keyboard to input numbers and operators.
-2. Calculate Results:
-Equals (=): Press this to see the result.
-Enter: Pressing the "Enter" key on the keyboard will also calculate the result.
-3. Use Special Functions:
-Square Root (√): Click the "√" button to get the square root of the current input.
-Percentage (%): Press the "%" button to calculate the percentage.
-4. Memory Functions:
-Add/Subtract to Memory: Use "M+" to add and "M-" to subtract the current input from memory.
-Recall Memory: Press "MR" to display the stored memory value.
-Clear Memory: Use "MC" to reset the memory value.
-5. Backspace and Clear:
-Backspace: Click the backspace icon or press the "Backspace" key to remove the last character.
-Clear (AC): Press "AC" or the "Escape" key to clear all input.
+---
+
+## 🚀 Features
+
+- ✅ Addition, Subtraction, Multiplication, Division
+- ✅ Percentage (%) calculation (Only division by 100)
+- ✅ Clear All (AC) and Delete (DEL)
+- ✅ Responsive design (works well on most screens)
+- ✅ Easy to understand and beginner-friendly code
+- ✅ Includes comments for learning purposes
+
+---
+
+## 📂 Project Structure
+
+```
+📁 Basic-Calculator/
+├── Basic-Calculator Trial.html   # Main HTML structure
+├── Basic-Calculator Trial.css    # Styling for layout and buttons
+├── Basic-Calculator Trial.js     # Functional JavaScript logic
+└── README.md                     # Project documentation
+```
+
+> Tip: You can rename these to `index.html`, `style.css`, and `script.js` for easier hosting or deployment.
+
+---
+
+## 🧑‍💻 How to Use
+
+1. **Download or clone** the repository.
+2. **Open** the file `Basic-Calculator Trial.html` in any modern web browser.
+3. Use the calculator:
+   - Click on the number and operator buttons to form your equation.
+   - Press `=` to calculate the result.
+   - Press `AC` to reset the input.
+   - Press `DEL` to delete the last character.
+   - Press `%` to divide the number by 100.
+
+No installation or setup required — just open and use!
+
+---
+
+## 🙌 Made with ❤️ for practice and learning!
+
