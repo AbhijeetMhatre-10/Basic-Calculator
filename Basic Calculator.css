@@ -1,86 +1,58 @@
-/* Importing custom fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
-
-/* Centering the calculator container */
-.bg-container {
+/* Basic page styling to center everything */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 100vh;
 }
 
-/* Styling for the calculator background */
-.calculator-bg {
-    background-color: #444455;
-    height: 480px;
-    width: 320px;
-    margin: auto;
-    border-radius: 16px;
+/* Main calculator box */
+.calculator {
+    background-color: #000;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
 }
 
-/* Calculator heading style */
-.heading {
-    font-size: 30px;
-    font-weight: bold;
-    font-family: "Roboto";
-    padding-top: 30px;
-    color: #ffffff;
-}
-
-/* Styling for the input box */
-.input-box {
-    height: 40px;
-    width: 280px;
-    margin-top: 10px;
+/* Display at the top where input/output is shown */
+.display {
+    background-color: #222;
+    color: white;
     text-align: right;
-    background-color: #9ba595;
-    color: #000000;
-    font-weight: bold;
+    padding: 20px;
+    font-size: 2rem;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    min-height: 50px;
 }
 
-/* Styling for the button container */
+/* Button grid layout: 4 buttons per row */
 .buttons {
-    margin-top: 10px;
-}
-
-/* Button styling container */
-.div-button {
-    height: 60px;
-    width: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
 /* General button styling */
-.button {
-    height: 50px;
-    margin-top: 15px;
-    width: 50px;
-    border-radius: 4px;
-    border-width: 0px;
+button {
+    padding: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
 }
 
-/* Large font size for certain buttons */
-.large-font {
-    font-size: 24px;
+/* Press effect on buttons */
+button:active {
+    filter: brightness(1.2);
 }
 
-/* Small font size for certain buttons */
-.small-font {
-    font-size: 12px;
-}
-
-/* Number button background and text color */
-.num-color {
-    background-color: #778899;
-    color: #ffffff;
-}
-
-/* Function button background and text color */
-.function-color {
-    background-color: #28282B;
-    color: #ffffff;
-}
-
-/* Clear button color */
-.clear-button-color {
-    background-color: #E34234;
-    color: #ffffff;
+/* Make the zero button wider */
+button.zero {
+    grid-column: span 2;
 }
