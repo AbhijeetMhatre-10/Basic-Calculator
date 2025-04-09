@@ -1,123 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <!-- Link to Bootstrap CSS for styling -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-
-  <!-- jQuery for Bootstrap's JavaScript components -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-  <!-- Popper.js for tooltips and popovers in Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-
-  <!-- Bootstrap JavaScript for interactive components -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-  <!-- Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Calculator (Trial)</title>
+    <!-- Linking the CSS file to style our calculator -->
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Container for the calculator -->
-  <div class="bg-container">
-    <!-- Calculator background and layout -->
-    <div class="calculator-bg text-center">
-        <h1 class="heading">Basic Calculator</h1>
-        <!-- Display input field -->
-        <input type="text" class="input-box" id="inputDisplay" />
-        <div class="container">
-            <div class="row buttons">
-                <!-- Memory buttons (Add, Subtract, Recall, Clear) -->
-                <div class="div-button ml-2">
-                    <button class="button function-color" onclick="memoryAdd()">M+</button>
-                </div>
-                <div class="div-button">
-                    <button class="button function-color" onclick="memorySubstract()">M-</button>
-                </div>
-                <div class="div-button">
-                    <button class="button function-color" onclick="memoryRecall()">MR</button>
-                </div>
-                <div class="div-button">
-                    <button class="button function-color" onclick="memoryClear()">MC</button>
-                </div>
-                <!-- Clear button -->
-                <div class="div-button">
-                    <button class="button clear-button-color" onclick="clearDisplay()">AC</button>
-                </div>
-                <!-- Percentage and Square Root buttons -->
-                <div class="div-button ml-2">
-                    <button class="button large-font function-color" onclick="calculatePercentage()">%</button>
-                </div>
-                <!-- Number buttons (1 to 9, 0) -->
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('1')">1</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('2')">2</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('3')">3</button>
-                </div>
-                <!-- Operator buttons (Divide, Multiply, Minus, Plus) -->
-                <div class="div-button">
-                    <button class="button large-font function-color" onclick="appendValue('/')">÷</button>
-                </div>
-                <div class="div-button ml-2">
-                    <button class="button large-font function-color" onclick="calculatSquateRoot()">√</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('4')">4</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('5')">5</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('6')">6</button>
-                </div>
-                <div class="div-button">
-                    <button class="button large-font function-color" onclick="appendValue('*')">×</button>
-                </div>
-                <!-- Pi button -->
-                <div class="div-button ml-2">
-                    <button class="button large-font num-color" onclick="appendValue('3.14')">π</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('7')">7</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('8')">8</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('9')">9</button>
-                </div>
-                <div class="div-button">
-                    <button class="button large-font function-color" onclick="appendValue('-')">-</button>
-                </div>
-                <!-- Backspace button -->
-                <div class="div-button ml-2">
-                    <button class="button function-color" onclick="backspace()">
-                        <i class="fa-solid fa-delete-left"></i>
-                    </button>
-                </div>
-                <!-- Decimal point and Equals button -->
-                <div class="div-button">
-                    <button class="button large-font num-color" onclick="appendValue('.')">.</button>
-                </div>
-                <div class="div-button">
-                    <button class="button num-color" onclick="appendValue('0')">0</button>
-                </div>
-                <div class="div-button">
-                    <button class="button large-font function-color" onclick="calculate()">=</button>
-                </div>
-                <div class="div-button">
-                    <button class="button large-font function-color" onclick="appendValue('+')">+</button>
-                </div>
-            </div>
+    <!-- Calculator wrapper -->
+    <div class="calculator">
+
+        <!-- Where the result or input shows up -->
+        <div class="display" id="display">0</div>
+
+        <!-- All calculator buttons -->
+        <div class="buttons">
+            <!-- Top row: clear all, delete one, percent, divide -->
+            <button onclick="clearDisplay()">AC</button>
+            <button onclick="deleteLast()">DEL</button>
+            <button onclick="percentage()">%</button>
+            <button onclick="appendOperator('/')">/</button>
+
+            <!-- Number and operator buttons -->
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendOperator('*')">*</button>
+
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendOperator('-')">-</button>
+
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendOperator('+')">+</button>
+
+            <!-- Zero takes double space, then dot and equals -->
+            <button onclick="appendNumber('0')" class="zero">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button onclick="calculate()">=</button>
         </div>
     </div>
-</div>
 
+    <!-- JavaScript handles the logic -->
+    <script src="script.js"></script>
 </body>
 
 </html>
