@@ -1,116 +1,71 @@
-// Get the input display element and initialize variables for current input and memory
-let inputDisplay = document.getElementById("inputDisplay");
-let currentInput = "";
-let memoryValue = 0;
+// Grab the display element where the numbers and result appear
+let display = document.getElementById("display");
 
-// Append a value (number or operator) to the current input
-function appendValue(value) {
-    // Prevent adding multiple decimal points
-    if (value === "." && currentInput.includes(".")) {
-        return;
+// Add a number or dot to the display
+function appendNumber(number) {
+    // If display is just 0 or an invalid result, replace it
+    if (display.innerText === "0" || display.innerText === "NaN" || display.innerText === "Infinity") {
+        display.innerText = number;
+    } else {
+        // Otherwise, just add the number to what's already there
+        display.innerText += number;
     }
-    currentInput += value;
-    inputDisplay.value = currentInput;
 }
 
-// Evaluate the current input and display the result
+// Add a math operator (+, -, *, /)
+function appendOperator(operator) {
+    let current = display.innerText;
+    let lastChar = current[current.length - 1];
+    let operators = ["+", "-", "*", "/"];
+
+    // Avoid adding two operators one after another
+    if (operators.includes(lastChar)) {
+        display.innerText = current.slice(0, -1) + operator;
+    } else {
+        display.innerText += operator;
+    }
+}
+
+// Clears everything and resets the display to 0
+function clearDisplay() {
+    display.innerText = "0";
+}
+
+// Deletes the last digit or operator from the display
+function deleteLast() {
+    let current = display.innerText;
+
+    // If there's more than one character, remove the last one
+    if (current.length > 1) {
+        display.innerText = current.slice(0, -1);
+    } else {
+        // Otherwise just reset to 0
+        display.innerText = "0";
+    }
+}
+
+// Converts the last number to a percentage (divide by 100)
+function percentage() {
+    let current = display.innerText;
+
+    // Look for the last number entered
+    let match = current.match(/(\d+\.?\d*)$/);
+    if (match) {
+        let number = parseFloat(match[0]);
+        let percentValue = number / 100;
+
+        // Replace the number in the string with the calculated percentage
+        display.innerText = current.replace(/(\d+\.?\d*)$/, percentValue);
+    }
+}
+
+// Evaluates the full expression (e.g. "4+5*2")
 function calculate() {
     try {
-        let result = eval(currentInput);  // Use eval to evaluate the mathematical expression
-        if (isFinite(result)) {
-            inputDisplay.value = result;
-            currentInput = String(result);  // Update currentInput to the result for further operations
-        } else {
-            inputDisplay.value = "Error";
-            currentInput = "";  // Reset input on error
-        }
-    } catch (error) {
-        inputDisplay.value = "Error";
-        currentInput = "";  // Reset input on error
+        // Use eval to do the calculation
+        display.innerText = eval(display.innerText);
+    } catch {
+        // If something goes wrong, show "NaN"
+        display.innerText = "NaN";
     }
 }
-
-// Calculate the square root of the current input
-function calculatSquateRoot() {
-    if (currentInput) {
-        let value = parseFloat(currentInput);
-        let result = Math.sqrt(value);  // Calculate square root
-        if (!isNaN(result)) {
-            inputDisplay.value = result;
-        } else {
-            inputDisplay.value = "Error";  // Error if the result is not a valid number
-        }
-        currentInput = String(result);
-    }
-}
-
-// Calculate the percentage of the current input
-function calculatePercentage() {
-    if (currentInput) {
-        let value = parseFloat(currentInput);
-        let result = value / 100;  // Calculate percentage
-        if (!isNaN(result)) {
-            inputDisplay.value = result;
-        } else {
-            inputDisplay.value = "Error";  // Error if the result is not a valid number
-        }
-        currentInput = String(result);
-    }
-}
-
-// Clear the display and reset current input
-function clearDisplay() {
-    currentInput = "";
-    inputDisplay.value = "";
-}
-
-// Remove the last character from the current input (backspace functionality)
-function backspace() {
-    currentInput = currentInput.slice(0, -1);
-    inputDisplay.value = currentInput;
-}
-
-// Add the current input value to memory
-function memoryAdd() {
-    if (currentInput) {
-        memoryValue += parseFloat(currentInput);
-        clearDisplay();
-    }
-}
-
-// Subtract the current input value from memory
-function memorySubstract() {
-    if (currentInput) {
-        memoryValue -= parseFloat(currentInput);
-        clearDisplay();
-    }
-}
-
-// Recall the stored memory value and display it
-function memoryRecall() {
-    inputDisplay.value = memoryValue;
-    currentInput = String(memoryValue);
-}
-
-// Clear the stored memory value
-function memoryClear() {
-    memoryValue = 0;
-}
-
-// Add event listener for keyboard input
-document.addEventListener("keydown", function(event) {
-    let key = event.key;
-    console.log(key);
-    if (/[0-9]/.test(key)) { 
-        appendValue(key);  // Append numeric input
-    }
-    if (key === "π" || key==="3.14") {  // Handle π input
-        appendValue('3.14');
-    }
-    if (["+", "-", "*", "/"].includes(key)) {
-        appendValue(key);  // Handle operator inputs
-    }
-    if (key === "Enter") calculate();  // Calculate on pressing Enter
-    if (key === "Backspace") backspace();  // Remove last character on Backspace
-    if (key === "Escape") clearDisplay();  // Clear display on Escape
-});
